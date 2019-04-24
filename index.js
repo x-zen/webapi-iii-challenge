@@ -1,6 +1,6 @@
 const express = require('express'); // import the express package
 
-//const apiRoutes = require('./routing/api/apiRoutes'); // import the post endpoints
+const apiRouter = require('./Routes/api/apiRouter'); // import the post endpoints
 
 const server = express(); // creates the server
 
@@ -13,7 +13,7 @@ server.get('/', (req, res) => {
 });
 
 // assigns the route for api endpoints
-//server.use('/api', apiRoutes);
+server.use('/api', apiRouter);
 
 // watch for connections on port 3000
 server.listen(5000, () =>
