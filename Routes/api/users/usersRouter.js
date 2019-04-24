@@ -115,8 +115,10 @@ router.put('/:id', zenUp, (req, res) => {
   .then(count => {
     if (count > 0) {
       res.status(200).json(updates);
+    } else {
+      res.status(404).json({ error: 'The user with the specified ID does not exist.'});
+
     }
-    res.status(404).json({ error: 'The user with the specified ID does not exist.'});
   })
   .catch(err => {
     res.status(500).json({ error: 'The user information could not be modified.' });
