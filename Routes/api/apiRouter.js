@@ -1,7 +1,8 @@
+/* --- Routes for '/api' --- */
 const express = require('express'); // import the express package
 
 //const usersRouter = require('./users/usersRouter'); // import the user endpoints
-//const postsRouter = require('./posts/postsRouter'); // import the post endpoints
+const postsRouter = require('./posts/postsRouter'); // import the post endpoints
 
 const router = express.Router(); // creates the route
 
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
 //router.use('/users', usersRouter);
 
 // assigns the route for post endpoints
-//router.use('/posts', postsRouter);
+router.use('/posts', postsRouter);
 
 
 module.exports = router; // exports the route
