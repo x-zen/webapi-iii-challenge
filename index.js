@@ -15,6 +15,7 @@ server.get('/', (req, res) => {
 // assigns the route for api endpoints
 server.use('/api', apiRouter);
 
+
 // watch for connections on port 3000
 server.listen(5000, () =>
   console.log('\n** Server running on http://localhost:5000 **')

@@ -1,13 +1,28 @@
-/* --- Routes for '/api/posts' --- */
+/* --- Routes for '/api/users' --- */
 const express = require('express'); // import the express package
 
 const db = require('../../../data/helpers/userDb.js'); // import data helpers
 
 const router = express.Router(); // creates the route
 
+/* --- Custom Middleware --- */
+/*
+  RegExp Object Reference
+
+  '/' - empty search pattern
+  '\b' - find a match at the beginning or end of a word in a string
+  '\w' - find a word character
+  '/g' - perform a global match(find all matches)
+*/
+const makeCaps = name => name.replace(/\b\w/g, x => x.toUpperCase());
+const zenUp = (req, res, next) => {
+  req.body.name = makeCaps(req.body.name);
+  next();
+};
+
 
 // POST - Creates a user using info sent in request body
-router.post('/', (req, res) => {
+router.post('/', zenUp, (req, res) => {
   const { name } = req.body;
   const user =  { name }
   if (!name) {
@@ -88,7 +103,7 @@ router.delete('/:id', (req, res) => {
 })
 
 // PUT - Updates user with specified ID & returns the moded user
-router.put('/:id', (req, res) => {
+router.put('/:id', zenUp, (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
   const updates =  { name };
