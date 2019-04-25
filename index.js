@@ -1,5 +1,6 @@
-const express = require('express'); // import the express package
+require('dotenv').config();
 
+const express = require('express'); // import the express package
 const apiRouter = require('./Routes/api/apiRouter'); // import the post endpoints
 
 const server = express(); // creates the server
@@ -16,7 +17,7 @@ server.get('/', (req, res) => {
 server.use('/api', apiRouter);
 
 
-// watch for connections on port 3000
-server.listen(5000, () =>
-  console.log('\n** Server running on http://localhost:5000 **')
+const port = process.env.PORT || 5000;
+server.listen(port, () =>
+  console.log(`\n** Server running on http://localhost:${port} **`)
 );
